@@ -32,11 +32,11 @@
     <update id="update" parameterType="com.lccw.model.UserLogin">
         UPDATE user
         <trim prefix="set" suffixOverrides=",">
-        <if test="param1 != null">name = #{param1},</if>
-        <if test="param2 != null">age = #{param2},</if>
-        <if test="param3 != null">email = #{param3},</if>
+        <if test="name != null">name = #{name},</if>
+        <if test="age != null">age = #{age},</if>
+        <if test="email != null">email = #{email},</if>
         </trim>
-        WHERE id = #{param4}
+        WHERE id = #{id}
     </update>
 
 </mapper>

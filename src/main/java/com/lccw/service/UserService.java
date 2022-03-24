@@ -15,5 +15,6 @@ public interface UserService {
     public UserLogin queryUserId(int id);
     public List<UserLogin> getName(String name); //查一个姓名行，多个出错
     public int del(int id); //删除记录
-    public int update(String name,Integer age,String email,int id); //删除记录
+    //public int update(String name,Integer age,String email,int id); //删除记录
+    public int update(UserLogin userLogin); //删除记录
 }

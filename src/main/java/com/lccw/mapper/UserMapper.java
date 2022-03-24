@@ -21,7 +21,8 @@ public interface UserMapper {
     public UserLogin queryUserId(int id); //查一条记录
     public List<UserLogin> getName(String name); //模糊查姓名  有一条或多条，或空
     public int del(int id); //删除记录
-    public int update(String name, Integer age, String email,int id);
+    //public int update(String name, Integer age, String email,int id);
+    public int update(UserLogin userLogin);
 
 
 

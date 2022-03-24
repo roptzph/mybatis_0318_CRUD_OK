@@ -62,12 +62,15 @@ public class UserController {
         return userService.del(id);
     }
     @RequestMapping("/update")
-    public int update(    String name,
+/*    public int update(    String name,
                           //sql中update用了动态语句null,所以要用基本数据类型，Integer初始值为null,而int为0
                           Integer age,
                           String email,
                           int id) {
-        return userService.update(name,age,email,id);
+        return userService.update(name,age,email,id);*/
+    //}
+    public int update(UserLogin userLogin) {
+        return userService.update(userLogin);
     }
 
 }
