@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<!--编写在resources文件中创建 mapper/UserMapper.xml文件
+注意：
+1.namespace中需要与使用@Mapper的接口对应
+2.UserMapper.xml文件名称必须与使用@Mapper的接口一致
+3.标签中的id必须与@Mapper的接口中的方法名一致，且参数一致
+4.resultType对应包名称-->
+
+<mapper namespace="com.lccw.mapper.UserMapper">
+    <select id="queryAll" resultType="com.lccw.model.UserLogin">
+        SELECT * FROM user
+    </select>
+    <select id="queryUserId" resultType="com.lccw.model.UserLogin">
+        SELECT * FROM user  where id = #{id}
+    </select><select id="getName" parameterType="String" resultType="com.lccw.model.UserLogin">
+        SELECT * FROM user  where name like  '%${name}%'   <!--concat('%',#{name},'%')-->
+</select>
+    <select id="add" resultType="com.lccw.model.UserLogin">
+        INSERT INTO user VALUES (#{id},#{name},#{age},#{email})
+    </select>
+    <delete id="del" parameterType="int"  >
+        DELETE  FROM user WHERE  id = #{id}
+    </delete>
+<!--    &lt;!&ndash;更新全部字段&ndash;&gt;
+    <update id="update" parameterType="com.lccw.model.UserLogin">
+        UPDATE user  SET  name=#{param1},age=#{param2},email=#{param3}
+        WHERE id = #{param4}
+    </update> -->
+    <!--更新部分或全部字段，参数多于一个按顺序用param1,2,3,4-->
+    <update id="update" parameterType="com.lccw.model.UserLogin">
+        UPDATE user
+        <trim prefix="set" suffixOverrides=",">
+        <if test="param1 != null">name = #{param1},</if>
+        <if test="param2 != null">age = #{param2},</if>
+        <if test="param3 != null">email = #{param3},</if>
+        </trim>
+        WHERE id = #{param4}
+    </update>
+
+</mapper>
